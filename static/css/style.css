@@ -1,0 +1,200 @@
+/* Game Store Inventory Manager - Main Stylesheet */
+
+:root {
+    --bg-primary: #11111b;
+    --bg-secondary: #1e1e2e;
+    --accent: #a78bfa;
+    --text-primary: #f8fafc;
+    --text-secondary: #a1a1aa;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    background-color: var(--bg-primary);
+    font-family: Arial, sans-serif;
+}
+
+header {
+    background-color: var(--bg-secondary);
+    padding: 24px;
+    border-bottom: 2px solid var(--accent);
+}
+
+header h1 {
+    margin: 0;
+    color: var(--accent);
+}
+
+main {
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 0 24px;
+}
+
+footer {
+    padding: 24px;
+    color: var(--text-secondary);
+    text-align: center;
+}
+
+/* Deshboard */
+
+.dashboard h2 {
+    font-size: 28px;
+    margin-bottom: 10px;
+    color: var(--text-primary);
+}
+
+.dashboard-description {
+    color: var(--text-secondary);
+    margin-bottom: 30px;
+}
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 20px;
+}
+
+.stat-card {
+    background-color: var(--bg-secondary);
+    border: 1px solid #38384a;
+    border-radius: 12px;
+    padding: 24px;
+    border-left: 4px solid var(--accent);
+}
+
+.stat-card h3 {
+    margin: 0 0 20px;
+    font-size: 16px;
+    color: var(--text-secondary);
+}
+
+.stat-number {
+    margin: 0;
+    font-size: 36px;
+    font-weight: bold;
+    color: var(--accent);
+}
+
+.low-stock {
+    border-left-color: #fbbf24;
+}
+
+.low-stock .stat-number {
+    color: #fbbf24;
+}
+
+.out-of-stock {
+    border-left-color: #fb7185;
+}
+
+.out-of-stock .stat-number {
+    color: #fb7185;
+}
+
+@media (max-width: 700px) {
+    .stats-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Main Application Layout */
+
+.app-layout {
+    display: flex;
+    min-height: 100vh;
+}
+
+.sidebar {
+    width: 250px;
+    flex-shrink: 0;
+    background-color: var(--bg-secondary);
+    border-right: 1px solid #38384a;
+    padding: 24px 16px;
+}
+
+.sidebar-brand {
+    padding: 0 12px 30px;
+}
+
+.sidebar-brand h1 {
+    font-size: 22px;
+    color: var(--accent);
+    margin: 0 0 8px;
+}
+
+.sidebar-brand p {
+    color: var(--text-secondary);
+    font-size: 13px;
+    margin: 0;
+}
+
+.sidebar nav {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.nav-link {
+    display: block;
+    padding: 14px 16px;
+    color: var(--text-secondary);
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: 500;
+}
+
+.nav-link.active {
+    background-color: #343047;
+    color: var(--accent);
+}
+
+a.nav-link:hover {
+    background-color: #343047;
+    color: var(--text-primary)
+}
+
+.nav-placeholder {
+    opacity: 0.6;
+    cursor: default;
+}
+
+.content-wrapper {
+    flex: 1;
+    min-width: 0;
+}
+
+.topbar {
+    background-color: var(--bg-secondary);
+    padding: 24px 32px;
+    border-bottom: 1px solid #38384a;
+}
+
+.topbar h2 {
+    margin: 0;
+    font-size: 20px;
+    color: var(--text-primary);
+}
+
+/* Responsive Sidebar */
+
+@media (max-width: 700px) {
+    .app-layout {
+        flex-direction: column;
+    }
+
+    .sidebar {
+        width: 100%;
+    }
+
+    .sidebar nav {
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+}

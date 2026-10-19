@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block title %}Dashboard | Game Store Inventory{% endblock %}
+
+{% block content %}
+<section class="dashboard">
+    <h2>Inventory Overview</h2>
+    <p class="dashboard-description">
+        Manage your games, stock levels, and publishers all in one place.
+    </p>
+
+    <div class="stats-grid">
+        <article class="stat-card">
+            <h3>Total Games</h3>
+            <p class="stat-number">0</p>
+        </article>
+
+        <article class="stat-card low-stock">
+            <h3>Low Stock</h3>
+            <p class="stat-number">0</p>
+        </article>
+
+        <article class="stat-card out-of-stock">
+            <h3>Out of Stock</h3>
+            <p class="stat-number">0</p>
+        </article>
+    </div>
+</section>
+{% endblock %}
