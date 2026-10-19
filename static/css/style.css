@@ -103,3 +103,98 @@ footer {
         grid-template-columns: 1fr;
     }
 }
+
+/* Main Application Layout */
+
+.app-layout {
+    display: flex;
+    min-height: 100vh;
+}
+
+.sidebar {
+    width: 250px;
+    flex-shrink: 0;
+    background-color: var(--bg-secondary);
+    border-right: 1px solid #38384a;
+    padding: 24px 16px;
+}
+
+.sidebar-brand {
+    padding: 0 12px 30px;
+}
+
+.sidebar-brand h1 {
+    font-size: 22px;
+    color: var(--accent);
+    margin: 0 0 8px;
+}
+
+.sidebar-brand p {
+    color: var(--text-secondary);
+    font-size: 13px;
+    margin: 0;
+}
+
+.sidebar nav {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.nav-link {
+    display: block;
+    padding: 14px 16px;
+    color: var(--text-secondary);
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: 500;
+}
+
+.nav-link.active {
+    background-color: #343047;
+    color: var(--accent);
+}
+
+a.nav-link:hover {
+    background-color: #343047;
+    color: var(--text-primary)
+}
+
+.nav-placeholder {
+    opacity: 0.6;
+    cursor: default;
+}
+
+.content-wrapper {
+    flex: 1;
+    min-width: 0;
+}
+
+.topbar {
+    background-color: var(--bg-secondary);
+    padding: 24px 32px;
+    border-bottom: 1px solid #38384a;
+}
+
+.topbar h2 {
+    margin: 0;
+    font-size: 20px;
+    color: var(--text-primary);
+}
+
+/* Responsive Sidebar */
+
+@media (max-width: 700px) {
+    .app-layout {
+        flex-direction: column;
+    }
+
+    .sidebar {
+        width: 100%;
+    }
+
+    .sidebar nav {
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+}
