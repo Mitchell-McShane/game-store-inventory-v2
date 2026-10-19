@@ -3,15 +3,27 @@
 {% block title %}Dashboard | Game Store Inventory{% endblock %}
 
 {% block content %}
-<h2>Welcome to your Game Store!</h2>
+<section class="dashboard">
+    <h2>Inventory Overview</h2>
+    <p class="dashboard-description">
+        Manage your games, stock levels, and publishers all in one place.
+    </p>
 
-<p>Manage your games, stock levels, and publishers all in one place</p>
+    <div class="stats-grid">
+        <article class="stat-card">
+            <h3>Total Games</h3>
+            <p class="stat-number">0</p>
+        </article>
 
-<h3>Inventory Overview</h3>
+        <article class="stat-card low-stock">
+            <h3>Low Stock</h3>
+            <p class="stat-number">0</p>
+        </article>
 
-<ul>
-    <li>Total Games: 0</li>
-    <li>Low Stock: 0</li>
-    <li>Out of Stock: 0</li>
-</ul>
+        <article class="stat-card out-of-stock">
+            <h3>Out of Stock</h3>
+            <p class="stat-number">0</p>
+        </article>
+    </div>
+</section>
 {% endblock %}
