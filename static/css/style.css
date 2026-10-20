@@ -198,3 +198,60 @@ a.nav-link:hover {
         flex-wrap: wrap;
     }
 }
+
+
+/* Games Inventory Page */
+
+.games-page {
+    color: var(--text-primary);
+}
+
+.games-page h2 {
+    color: var(--text-primary);
+}
+
+.games-page p {
+    color: var(--text-secondary);
+}
+
+
+/* Games Inventory Table */
+
+.table-container {
+    margin-top: 24px;
+    overflow-x: auto;
+    background-color: #1e1e2e;
+    border: 1px solid #343446;
+    border-radius: 12px;
+}
+
+.games-table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+}
+
+.games-table th,
+.games-table td {
+    padding: 16px;
+    white-space: nowrap;
+}
+
+.games-table thead {
+    background-color: #29293d;
+}
+
+.games-table th {
+    color: #a78bfa;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.games-table td {
+    color: #f8fafc;
+    border-top: 1px solid #343446;
+}
+
+.games-table tbody tr:hover {
+    background-color: #29293d;
+}

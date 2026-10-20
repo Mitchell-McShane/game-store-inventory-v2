@@ -23,3 +23,25 @@ def home():
             out_of_stock = cursor.fetchone()[0]
 
     return render_template("index.html", total_games=total_games, low_stock=low_stock, out_of_stock=out_of_stock)
+
+
+@app.route("/games")
+def games():
+    with get_connection() as connection:
+        with connection.cursor() as cursor:
+            cursor.execute("""
+                SELECT
+                    games.title,
+                    games.platform,
+                    games.stock_quantity,
+                    games.buying_cost,
+                    games.selling_price,
+                    publishers.name
+                FROM games
+                JOIN publishers
+                    ON games.publisher_id = publishers.id;
+            """)
+
+            game_list = cursor.fetchall()
+
+    return render_template("games.html", games=game_list)
