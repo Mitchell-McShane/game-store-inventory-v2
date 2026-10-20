@@ -255,3 +255,30 @@ a.nav-link:hover {
 .games-table tbody tr:hover {
     background-color: #29293d;
 }
+
+
+/* Stock Status Badges */
+
+.stock-badge {
+    display: inline-block;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+.in-stock-badge {
+    background-color: #14532d;
+    color: #86efac;
+}
+
+.low-stock-badge {
+    background-color: #78350f;
+    color: #fcd34d;
+}
+
+.out-of-stock-badge {
+    background-color: #7f1d1d;
+    color: #fca5a5;
+}

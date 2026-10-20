@@ -29,7 +29,22 @@
                     <td>{{ game[0] }}</td>
                     <td>{{ game[1] }}</td>
                     <td>{{ game[5] }}</td>
-                    <td>{{ game[2] }}</td>
+
+                    <td>
+                        {% if game[2] == 0 %}
+                        <span class="stock-badge out-of-stock-badge">
+                            Out of Stock
+                        </span>
+                        {% elif game[2] <= 5 %} <span class="stock-badge low-stock-badge">
+                            Low Stock ({{ game[2] }})
+                            </span>
+                            {% else %}
+                            <span class="stock-badge in-stock-badge">
+                                In Stock ({{ game[2] }})
+                            </span>
+                            {% endif %}
+                    </td>
+
                     <td>£{{ game[3] }}</td>
                     <td>£{{ game[4] }}</td>
                 </tr>
