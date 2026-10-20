@@ -282,3 +282,80 @@ a.nav-link:hover {
     background-color: #7f1d1d;
     color: #fca5a5;
 }
+
+
+/* Add Game Form */
+
+.form-container {
+    max-width: 650px;
+    margin-top: 24px;
+    padding: 30px;
+    background-color: #1e1e2e;
+    border: 1px solid #343446;
+    border-radius: 12px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    color: #f8fafc;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 12px 14px;
+    background-color: #11111b;
+    color: #f8fafc;
+    border: 1px solid #45455c;
+    border-radius: 8px;
+    font-family: inherit;
+    font-size: 14px;
+}
+
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus {
+    outline: 2px solid #a78bfa;
+    outline-offset: 1px;
+}
+
+.primary-button {
+    padding: 12px 24px;
+    background-color: #8b5cf6;
+    color: #ffffff;
+    border: none;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.primary-button:hover {
+    background-color: #7c3aed;
+}
+
+
+/* Form Validation Errors */
+
+.form-error {
+    max-width: 650px;
+    box-sizing: border-box;
+    margin-bottom: 20px;
+    padding: 14px 18px;
+    background-color: #451a1a;
+    color: #fca5a5;
+    border: 1px solid #991b1b;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 500;
+}
