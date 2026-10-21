@@ -70,7 +70,12 @@ def add_game():
         platform = request.form["platform"].strip()
 
         if not title or not platform:
-            return "Error: Game title and platform are required", 400
+            return render_template(
+                "add_game.html",
+                publishers=get_publishers(),
+                error="Game title and platform are required",
+                form_data=request.form
+            ), 400
 
         try:
             stock_quantity = int(request.form["stock_quantity"])
@@ -79,7 +84,12 @@ def add_game():
             publisher_id = int(request.form["publisher_id"])
 
         except (ValueError, InvalidOperation):
-            return "Error: Please enter valid numbers.", 400
+            return render_template(
+                "add_game.html",
+                publishers=get_publishers(),
+                error="Please enter valid numbers and select a publisher.",
+                form_data=request.form
+            ), 400
 
         if stock_quantity < 0:
             return render_template(
@@ -95,10 +105,20 @@ def add_game():
             or buying_cost < 0
             or selling_price < 0
         ):
-            return "Error: Prices must be valid, non-negative numbers.", 400
+            return render_template(
+                "add_game.html",
+                publishers=get_publishers(),
+                error="Prices must be valid, non-negative numbers.",
+                form_data=request.form
+            ), 400
 
         if publisher_id <= 0:
-            return "Error: Please select a valid publisher.", 400
+            return render_template(
+                "add_game.html",
+                publishers=get_publishers(),
+                error="Please select a valid publisher.",
+                form_data=request.form
+            ), 400
 
         with get_connection() as connection:
             with connection.cursor() as cursor:

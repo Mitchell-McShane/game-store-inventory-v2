@@ -16,7 +16,7 @@
             {{ error }}
         </div>
         {% endif %}
-        <form method="POST" novalidate>
+        <form method="POST">
             <div class="form-group">
                 <label for="title">Game Title</label>
                 <input type="text" id="title" name="title" placeholder="e.g. Persona 5 Royal"
@@ -35,34 +35,40 @@
 
             <div class="form-group">
                 <label for="stock_quantity">Stock Quantity</label>
-                <input type="number" id="stock_quantity" name="stock_quantity" min="0" value="0" required>
+                <input type="number" id="stock_quantity" name="stock_quantity" min="0"
+                    value="{{ form_data.get('stock_quantity', '0') if form_data is defined else '0' }}" required>
             </div>
 
             <div class="form-group">
                 <label for="buying_cost">Buying Cost (£)</label>
                 <input type="number" id="buying_cost" name="buying_cost" min="0" max="99999999.99" step="0.01"
-                    placeholder="e.g. 19.99" required>
+                    placeholder="e.g. 19.99"
+                    value="{{ form_data.get('buying_cost', '') if form_data is defined else '' }}" required>
             </div>
 
             <div class="form-group">
                 <label for="selling_price">Selling Price (£)</label>
                 <input type="number" id="selling_price" name="selling_price" min="0" max="99999999.99" step="0.01"
-                    placeholder="e.g. 39.99" required>
+                    placeholder="e.g. 39.99"
+                    value="{{ form_data.get('selling_price', '') if form_data is defined else '' }}" required>
             </div>
 
 
             <div class="form-group">
-                <label for="publisher_id">Publisher</label>
 
                 <select id="publisher_id" name="publisher_id" required>
                     <option value="">Select a publisher</option>
 
+
                     {% for publisher in publishers %}
-                    <option value="{{ publisher[0] }}">
+                    <option value="{{ publisher[0] }}" {% if form_data is defined and
+                        form_data.get('publisher_id')==publisher[0]|string %} selected {% endif %}>
                         {{ publisher[1] }}
                     </option>
                     {% endfor %}
+
                 </select>
+
             </div>
 
 
