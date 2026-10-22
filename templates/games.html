@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+
+{% block title %}Games | Game Store Inventory{% endblock %}
+
+{% block content %}
+<section class="games-page">
+    <h2>Games Inventory</h2>
+
+    <p class="dashboard-description">
+        View and manage all games in your store.
+    </p>
+
+    <div class="table-container">
+        <table class="games-table">
+            <thead>
+                <tr>
+                    <th>Game</th>
+                    <th>Platform</th>
+                    <th>Publisher</th>
+                    <th>Stock</th>
+                    <th>Buying Cost</th>
+                    <th>Selling Price</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                {% for game in games %}
+                <tr>
+                    <td>{{ game[0] }}</td>
+                    <td>{{ game[1] }}</td>
+                    <td>{{ game[5] }}</td>
+
+                    <td>
+                        {% if game[2] == 0 %}
+                        <span class="stock-badge out-of-stock-badge">
+                            Out of Stock
+                        </span>
+                        {% elif game[2] <= 5 %} <span class="stock-badge low-stock-badge">
+                            Low Stock ({{ game[2] }})
+                            </span>
+                            {% else %}
+                            <span class="stock-badge in-stock-badge">
+                                In Stock ({{ game[2] }})
+                            </span>
+                            {% endif %}
+                    </td>
+
+                    <td>£{{ game[3] }}</td>
+                    <td>£{{ game[4] }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+</section>
+{% endblock %}
