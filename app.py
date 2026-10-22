@@ -122,6 +122,22 @@ def add_game():
 
         with get_connection() as connection:
             with connection.cursor() as cursor:
+                cursor.execute(
+                    "SELECT id FROM publishers WHERE id = %s AND active = TRUE;",
+                    (publisher_id,)
+                )
+                publisher = cursor.fetchone()
+
+        if publisher is None:
+            return render_template(
+                "add_game.html",
+                publishers=get_publishers(),
+                error="The selected publisher does not exist or is inactive.",
+                form_data=request.form
+            ), 400
+
+        with get_connection() as connection:
+            with connection.cursor() as cursor:
                 cursor.execute("""
                     INSERT INTO games (
                         title,
