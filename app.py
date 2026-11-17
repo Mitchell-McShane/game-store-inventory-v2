@@ -51,7 +51,8 @@ def games():
                     games.stock_quantity,
                     games.buying_cost,
                     games.selling_price,
-                    publishers.name
+                    publishers.name,
+                    games.id
                 FROM games
                 JOIN publishers
                     ON games.publisher_id = publishers.id;
@@ -162,3 +163,8 @@ def add_game():
         return redirect(url_for("games"))
 
     return render_template("add_game.html", publishers=get_publishers())
+
+
+@app.route("/games/<int:game_id>/edit")
+def edit_game(game_id):
+    return f"Editing game with ID: {game_id}"
