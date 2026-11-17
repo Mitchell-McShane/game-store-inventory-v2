@@ -165,7 +165,7 @@ def add_game():
     return render_template("add_game.html", publishers=get_publishers())
 
 
-@app.route("/games/<int:game_id>/edit")
+@app.route("/games/<int:game_id>/edit", methods=["GET", "POST"])
 def edit_game(game_id):
     with get_connection() as connection:
         with connection.cursor() as cursor:
@@ -187,6 +187,49 @@ def edit_game(game_id):
 
     if game is None:
         return "Game not found.", 404
+
+    if request.method == "POST":
+        title = request.form["title"].strip()
+        description = request.form["description"].strip()
+        platform = request.form["platform"].strip()
+
+        if not title or not platform:
+            return "Error: Game title and platform are required.", 400
+
+        try:
+            stock_quantity = int(request.form["stock_quantity"])
+            buying_cost = Decimal(request.form["buying_cost"])
+            selling_price = Decimal(request.form["selling_price"])
+            publisher_id = int(request.form["publisher_id"])
+        except (ValueError, InvalidOperation):
+            return "Error: Please enter valid numbers.", 400
+
+        if stock_quantity < 0:
+            return "Error: Stock quantity cannot be negative.", 400
+
+        if (
+            not buying_cost.is_finite()
+            or not selling_price.is_finite()
+            or buying_cost < 0
+            or selling_price < 0
+        ):
+            return "Error: Prices must be valid, non-negative numbers.", 400
+
+        if publisher_id <= 0:
+            return "Error: Please select a valid publisher.", 400
+
+        with get_connection() as connection:
+            with connection.cursor() as cursor:
+                cursor.execute(
+                    "SELECT id FROM publishers WHERE id = %s AND active = TRUE;",
+                    (publisher_id,)
+                )
+                publisher = cursor.fetchone()
+
+        if publisher is None:
+            return "Error: The selected publisher does not exist or is inactive.", 400
+
+        return f"Updated game title: {title} | Stock: {stock_quantity} | Price: £{selling_price}"
 
     return render_template(
         "edit_game.html",
