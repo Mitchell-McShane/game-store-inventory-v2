@@ -167,4 +167,29 @@ def add_game():
 
 @app.route("/games/<int:game_id>/edit")
 def edit_game(game_id):
-    return f"Editing game with ID: {game_id}"
+    with get_connection() as connection:
+        with connection.cursor() as cursor:
+            cursor.execute("""
+                SELECT
+                    id,
+                    title,
+                    description,
+                    platform,
+                    stock_quantity,
+                    buying_cost,
+                    selling_price,
+                    publisher_id
+                FROM games
+                WHERE id = %s;
+            """, (game_id,))
+
+            game = cursor.fetchone()
+
+    if game is None:
+        return "Game not found.", 404
+
+    return render_template(
+        "edit_game.html",
+        game=game,
+        publishers=get_publishers()
+    )
